@@ -6,103 +6,110 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 20px;
+            background-color: #0E1116;
+            color: #CB9CF2;
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.3s ease;
         }
 
         form {
-            background: #fff;
+            background-color: #374A67;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            margin: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            animation: fadeIn 0.5s ease-out;
         }
 
         fieldset {
-            border: none;
-            padding: 0;
+            border: 2px solid #616283;
+            border-radius: 4px;
+            padding: 15px;
         }
 
         legend {
-            font-size: 1.2em;
+            color: #CB9CF2;
             font-weight: bold;
-            color: #444;
+            padding: 0 10px;
         }
 
         label {
-            font-weight: bold;
             display: block;
             margin-top: 10px;
+            color: #9E7B9B;
         }
 
         select, input[type="date"], input[type="text"] {
             width: 100%;
             padding: 8px;
             margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border: 1px solid #616283;
+            background-color: #0E1116;
+            color: #CB9CF2;
+            border-radius: 4px;
         }
 
         input[type="submit"] {
-            background: #007BFF;
-            color: #fff;
+            background-color: #616283;
+            color: #CB9CF2;
             padding: 10px 15px;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 1em;
             margin-top: 15px;
-            width: 100%;
+            transition: background-color 0.3s ease;
         }
 
         input[type="submit"]:hover {
-            background: #0056b3;
+            background-color: #9E7B9B;
         }
 
         table {
-            width: 90%;
-            margin: 20px auto;
+            width: 100%;
             border-collapse: collapse;
-            background: #fff;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            animation: slideUp 0.5s ease-out;
         }
 
         th, td {
-            padding: 10px;
+            padding: 12px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #616283;
         }
 
         th {
-            background: #007BFF;
-            color: white;
-            text-transform: uppercase;
+            background-color: #374A67;
+            color: #CB9CF2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #1A2028;
         }
 
         tr:hover {
-            background: #f1f1f1;
+            background-color: #2C3A4F;
+            transition: background-color 0.3s ease;
         }
 
         a {
-            color: #007BFF;
+            color: #CB9CF2;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         a:hover {
-            text-decoration: underline;
+            color: #9E7B9B;
         }
 
-        @media (max-width: 768px) {
-            form {
-                max-width: 100%;
-                padding: 15px;
-            }
-            table {
-                width: 100%;
-                overflow-x: auto;
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
     </style>
 </head>
@@ -223,3 +230,4 @@ pg_close($link);
 
 </body>
 </html>
+
