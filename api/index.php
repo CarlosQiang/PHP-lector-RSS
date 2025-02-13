@@ -6,15 +6,15 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #0E1116;
-            color: #CB9CF2;
+            background-color: #f0f0f0;
+            color: #333;
             margin: 0;
             padding: 20px;
             transition: background-color 0.3s ease;
         }
 
         form {
-            background-color: #374A67;
+            background-color: #ffffff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -23,13 +23,13 @@
         }
 
         fieldset {
-            border: 2px solid #616283;
+            border: 2px solid #CB9CF2;
             border-radius: 4px;
             padding: 15px;
         }
 
         legend {
-            color: #CB9CF2;
+            color: #616283;
             font-weight: bold;
             padding: 0 10px;
         }
@@ -37,69 +37,84 @@
         label {
             display: block;
             margin-top: 10px;
-            color: #9E7B9B;
+            color: #374A67;
         }
 
         select, input[type="date"], input[type="text"] {
             width: 100%;
             padding: 8px;
             margin-top: 5px;
-            border: 1px solid #616283;
-            background-color: #0E1116;
-            color: #CB9CF2;
+            border: 1px solid #CB9CF2;
+            background-color: #ffffff;
+            color: #333;
             border-radius: 4px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        select:focus, input[type="date"]:focus, input[type="text"]:focus {
+            border-color: #9E7B9B;
+            box-shadow: 0 0 0 2px rgba(158, 123, 155, 0.2);
+            outline: none;
         }
 
         input[type="submit"] {
-            background-color: #616283;
-            color: #CB9CF2;
+            background-color: #CB9CF2;
+            color: #ffffff;
             padding: 10px 15px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             margin-top: 15px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.1s ease;
         }
 
         input[type="submit"]:hover {
             background-color: #9E7B9B;
+            transform: translateY(-2px);
+        }
+
+        input[type="submit"]:active {
+            transform: translateY(0);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             animation: slideUp 0.5s ease-out;
         }
 
         th, td {
             padding: 12px;
             text-align: left;
-            border-bottom: 1px solid #616283;
+            border-bottom: 1px solid #e0e0e0;
         }
 
         th {
-            background-color: #374A67;
-            color: #CB9CF2;
+            background-color: #CB9CF2;
+            color: #ffffff;
         }
 
         tr:nth-child(even) {
-            background-color: #1A2028;
+            background-color: #f8f8f8;
         }
 
         tr:hover {
-            background-color: #2C3A4F;
+            background-color: #e8e8e8;
             transition: background-color 0.3s ease;
         }
 
         a {
-            color: #CB9CF2;
+            color: #616283;
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         a:hover {
-            color: #9E7B9B;
+            color: #CB9CF2;
+            text-decoration: underline;
         }
 
         @keyframes fadeIn {
@@ -110,6 +125,17 @@
         @keyframes slideUp {
             from { transform: translateY(20px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            table {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
