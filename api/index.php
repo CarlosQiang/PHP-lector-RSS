@@ -149,6 +149,7 @@
 
 <?php
     require_once "RSSElPais.php";
+    require_once "RSSElMundo.php";
     require_once "conexionBBDD.php";
 
     function filtros($sql, $link)
@@ -177,19 +178,25 @@
         echo "</table>";
     }
 
-    // Verifica si la conexión falló
     if (! $link) {
         die("Conexión fallida: " . pg_last_error());
     } else {
         echo "<table style='border: 5px #E4CCE8 solid;'>";
-        echo "<tr><th><p style='color: #66E9D9;'>TITULO</p ></th><th><p style='color: #66E9D9;'>CONTENIDO</p ></th><th><p style='color: #66E9D9;'>DESCRIPCIÓN</p ></th><th><p style='color: #66E9D9;'>CATEGORÍA</p ></th><th><p style='color: #66E9D9;'>ENLACE</p ></th><th><p style='color: #66E9D9;'>FECHA DE PUBLICACIÓN</p ></th></tr><br>";
+        echo "<tr><th><p style='color: #66E9D9;'>TITULO</p></th><th><p style='color: #66E9D9;'>CONTENIDO</p></th><th><p style='color: #66E9D9;'>DESCRIPCIÓN</p></th><th><p style='color: #66E9D9;'>CATEGORÍA</p></th><th><p style='color: #66E9D9;'>ENLACE</p></th><th><p style='color: #66E9D9;'>FECHA DE PUBLICACIÓN</p></th></tr><br>";
 
+        $periodico = 'elpais'; // Valor por defecto
         if (isset($_GET['filtrar'])) {
+            $periodico = isset($_GET['periodicos']) ? $_GET['periodicos'] : 'elpais';
+            // Validar entrada para prevenir SQL injection
+            if (! in_array($periodico, ['elpais', 'elmundo'])) {
+                $periodico = 'elpais';
+            }
+
             $cat     = isset($_GET["categoria"]) ? $_GET["categoria"] : '';
             $fech    = isset($_GET["fecha"]) ? date("Y-m-d", strtotime($_GET["fecha"])) : '';
             $palabra = isset($_GET["buscar"]) ? $_GET["buscar"] : '';
 
-            $sql        = "SELECT * FROM elpais";
+            $sql        = "SELECT * FROM $periodico";
             $conditions = [];
 
             if ($cat != "") {
@@ -210,13 +217,15 @@
 
             filtros($sql, $link);
         } else {
-            $sql = "SELECT * FROM elpais ORDER BY fpubli DESC LIMIT 20";
+            // Consulta por defecto para ambos periódicos
+            $sql = "(SELECT * FROM elpais UNION ALL SELECT * FROM elmundo) AS noticias
+                    ORDER BY fpubli DESC LIMIT 20";
             filtros($sql, $link);
         }
 
         echo "</table>";
     }
 
-    // Cerrar la conexión a la base de datos
     pg_close($link);
 ?>
+
